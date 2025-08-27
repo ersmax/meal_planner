@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render     # render the response based on data provided by views
 from .models import Meal
 
 # Create your views here.
@@ -15,8 +15,7 @@ def meals(request):
 def meal(request, meal_id):
     """Page to show an individual meal"""
     meal = Meal.objects.get(id=meal_id)
-    meal_items = meal.mealitem_set.all()
-
+    meal_items = meal.mealitem_set.all()    # reverse lookup <modelname>_set.
     context = {'meal': meal, 'meal_items': meal_items}
     return render(request, 'meal_plans/meal.html', context)
 
